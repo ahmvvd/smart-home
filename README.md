@@ -1,229 +1,64 @@
 ﻿# smart-home
-
-ESP32 Smart Access & Environmental Monitoring System
-Overview
-
-This project implements a Smart Access and Environmental Monitoring System using an ESP32 microcontroller.
-The system integrates:
-
-RFID-based identification for access control
-
-Environmental sensing (temperature, humidity, and pressure)
-
-Cloud monitoring and visualization using Blynk IoT
-
-The project demonstrates the use of multiple communication protocols (SPI and I²C) on a single ESP32 platform, making it suitable for smart home, smart gate, or IoT laboratory applications.
-
-System Features
-
-Reads RFID card UID using an MFRC522 RFID module
-
-Measures:
-
-Temperature (°C)
-
-Humidity (%)
-
-Atmospheric Pressure (hPa)
-
-Sends real-time sensor data to the Blynk Cloud
-
-Displays sensor values on the Blynk mobile application
-
-Uses reliable, industry-standard communication protocols
-
-Hardware Components
+ Hardware Used
 
 ESP32 Development Board
 
-MFRC522 RFID Reader Module
+MFRC522 RFID Reader
 
-BME280 Environmental Sensor
+BME280 Sensor (Temperature, Humidity, Pressure)
 
-RFID Cards/Tags
+Wi-Fi Network
 
-Jumper Wires
+Blynk IoT Platform
 
-Breadboard
+Communication Protocols
 
-Power supply (USB / 5V)
+SPI (MOSI, MISO, SCK, SS)
+Used for communication between the ESP32 and the MFRC522 RFID reader.
 
-Communication Protocols Used
-1. SPI Communication (RFID)
+I²C (SDA, SCL)
+Used for communication between the ESP32 and the BME280 environmental sensor.
 
-The MFRC522 RFID module communicates with the ESP32 using SPI.
+System Functionality
 
-SPI signals used:
+Detects and reads RFID card UID via MFRC522
 
-MOSI – Master Out Slave In
+Measures temperature (°C), humidity (%), and pressure (hPa) using BME280
 
-MISO – Master In Slave Out
+Displays data on the Serial Monitor
 
-SCK – Serial Clock
+Sends environmental data to the Blynk cloud dashboard via Wi-Fi
 
-SS – Slave Select
+Blynk Cloud Setup
 
-RST – Reset pin
+Create a project in the Blynk IoT App
 
-SPI is used because it provides fast and reliable data transfer, which is ideal for RFID UID reading.
+Select ESP32 as the device
 
-2. I²C Communication (Environmental Sensor)
+Copy the Template ID, Template Name, and Auth Token
 
-The BME280 sensor communicates with the ESP32 using I²C.
+Add widgets (e.g., Gauge or Display) and assign Virtual Pins
 
-I²C signals used:
+Connect ESP32 to Wi-Fi and upload the code
 
-SDA – Serial Data
-
-SCL – Serial Clock
-
-I²C allows multiple sensors to share the same bus using device addresses, reducing wiring complexity.
-
-Cloud Integration (Blynk IoT)
-What is Blynk?
-
-Blynk is an IoT platform that enables:
-
-Cloud data storage
-
-Real-time monitoring
-
-Mobile dashboard visualization
-
-Remote access from anywhere
-
-Blynk Architecture
-
-ESP32 connects to Wi-Fi
-
-Sensor data is sent to Blynk Cloud
-
-Mobile app retrieves data from the cloud
-
-User views live sensor readings on smartphone
-
-Blynk App Setup Guide
-Step 1: Create a Blynk Account
-
-Download Blynk IoT app (Android / iOS)
-
-Sign up using email
-
-Step 2: Create a New Template
-
-Go to Blynk Web Dashboard
-
-Create a new template
-
-Select:
-
-Hardware: ESP32
-
-Connection type: Wi-Fi
-
-Note down:
-
-BLYNK_TEMPLATE_ID
-
-BLYNK_TEMPLATE_NAME
-
-BLYNK_AUTH_TOKEN
-
-Step 3: Configure Datastreams
-
-Create datastreams for:
-
-Temperature
-
-Humidity
-
-Pressure
-
-Set:
-
-Data type: Float
-
-Units: °C, %, hPa
-
-Update mode: Push
-
-Step 4: Design Mobile Dashboard
-
-Add widgets (Gauge / Label)
-
-Link each widget to its respective datastream
-
-Save and deploy the template
-
-Software Requirements
+Software & Libraries
 
 Arduino IDE
 
-ESP32 Board Package (latest stable version)
+ESP32 Board Package
 
-Required Libraries:
+SPI, Wire (I²C)
 
-SPI
+MFRC522 Library
 
-MFRC522
+Adafruit BME280 Library
 
-Wire
-
-Adafruit BME280
-
-Adafruit Unified Sensor
-
-Blynk
-
-Code Description
-RFID Section
-
-Initializes the MFRC522 module using SPI
-
-Detects presence of a new RFID card
-
-Reads and prints the UID to the Serial Monitor
-
-Environmental Sensor Section
-
-Initializes the BME280 using I²C
-
-Reads temperature, humidity, and pressure
-
-Displays values on Serial Monitor
-
-Sends data to Blynk Cloud
-
-Main Loop
-
-Continuously checks for RFID cards
-
-Continuously updates environmental readings
-
-Maintains cloud communication with Blynk
+Blynk Library
 
 Applications
 
-Smart Gate / Smart Door Access
+Smart access control systems
 
-Smart Home Monitoring
+IoT-based environmental monitoring
 
-IoT Learning and Demonstration
-
-Embedded Systems and Networking Labs
-
-Future Improvements
-
-Add servo motor for automatic gate control
-
-Implement RFID authorization (whitelist UIDs)
-
-Add data logging and historical charts
-
-Enable alerts for abnormal temperature or pressure
-
-Author
-
-Ahmed
-Electrical / Embedded Systems Project
-ESP32 – IoT – Smart Systems
+Smart homes and smart buildings
